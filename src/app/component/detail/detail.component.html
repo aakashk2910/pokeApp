@@ -1,0 +1,57 @@
+<div *ngIf="pokemon">
+  <mat-card-header>
+    <div mat-card-avatar class="poke-header-image"
+         style="background-image: url({{ pokemon.sprite }})">
+    </div>
+    <mat-card-title>{{ pokemon.name }}</mat-card-title>
+    <mat-card-subtitle>Type: {{ pokemon.type }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image class="image-card" src="{{ pokemon.imgUrl }}" alt="Photo of {{ pokemon.name }}">
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-grid-list cols="3" rowHeight="1:2">
+      <mat-grid-tile>
+        <mat-list>
+          <br>
+          <mat-list-item class="stat-item">
+            <div mat-line>{{pokemon.height}}</div>
+            <div mat-line class="label"> Height </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div mat-line>{{pokemon.weight}}</div>
+            <div mat-line class="label"> Weight </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div mat-line>{{pokemon.baseExperience}}</div>
+            <div mat-line class="label"> Base Experience </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-list>
+          <br>
+          <mat-list-item class="stat-item" *ngFor="let item of [0,1,2]">
+            <div mat-line>{{pokemon.stat[item].base_stat}}</div>
+            <div mat-line class="label"> {{ dataService.capitalize(pokemon.stat[item].stat.name) }} </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-list>
+          <br>
+          <mat-list-item class="stat-item" *ngFor="let item of [3,4,5]">
+            <div mat-line>{{pokemon.stat[item].base_stat}}</div>
+            <div mat-line class="label"> {{ dataService.capitalize(pokemon.stat[item].stat.name) }} </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="addPokemonToList('MyList')">Add to personal list</button>
+    <button mat-button color="primary" (click)="addPokemonToList('Wishlist')">Add to wish list</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+  </mat-card-actions>
+</div>

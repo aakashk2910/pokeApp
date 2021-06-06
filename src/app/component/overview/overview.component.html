@@ -1,0 +1,22 @@
+<mat-card class="overview mat-elevation-z8">
+  <mat-card-title style="font-family: Pokemon;">Overview</mat-card-title>
+  <mat-card-content [style.overflow]="'auto'" [style.height.px]="'870'">
+    <div *ngIf="pokemonList && pokemonList.length > 0" style="margin-left: 5%; width: 90%;">
+      <div *ngFor="let pokemon of (pokemonList | slice: lowValue : highValue)">
+        <br>
+        <app-overview-card [name]="pokemon" (click)="openDetails(pokemon)"></app-overview-card>
+      </div>
+    </div>
+
+    <div *ngIf="pokemonList.length === 0 && dataFetched === true;">
+      <mat-card style="width: 40%; margin: 5%">
+        No Data
+      </mat-card>
+    </div>
+    <div style="width: 90%; margin-left: 5%;">
+      <mat-paginator [length]="pokemonList.length" pageSize=10 (page)="getPaginatorData($event)"
+        [pageSizeOptions]="[5, 10, 15, 20, 25, 30]" showFirstLastButtons="false">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

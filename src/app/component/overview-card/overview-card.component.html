@@ -1,0 +1,21 @@
+<div *ngIf="pokemon">
+  <mat-card class="poke-card mat-elevation-z8">
+    <mat-card-header>
+      <div mat-card-avatar class="poke-header-image"
+           style="background-image: url({{ pokemon.imgUrl }})">
+      </div>
+      <div class="details">
+        <mat-card-title>{{ pokemon.name }}</mat-card-title>
+        <mat-card-subtitle>Type: {{ pokemon.type }}</mat-card-subtitle>
+      </div>
+      <div class="details">
+        <mat-card-subtitle>Base Experience: {{ pokemon.baseExperience }}</mat-card-subtitle>
+        <mat-card-subtitle>HP: {{pokemon.stat[0].base_stat}}</mat-card-subtitle>
+      </div>
+      <div class="details">
+        <mat-card-subtitle>Attack: {{pokemon.stat[1].base_stat}}</mat-card-subtitle>
+        <mat-card-subtitle>Defense: {{pokemon.stat[2].base_stat}}</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+  </mat-card>
+</div>

@@ -1,0 +1,68 @@
+<mat-card>
+  <span><img style="width: 60px; float: left; position: relative; margin-left: 10px; top: 20px;" src="assets/pokemon-go.png"></span>
+  <span style="position: relative; margin-left: 10px; top: 34px; font-size: larger; font-family: Pokemon;">Poke App</span>
+  <div *ngIf="typeArray.length > 0">
+    <form class="filter-form search-bar" #f="ngForm" (submit)="search(f)">
+      <table class="filter-card" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="filter-card">
+              <mat-label>Name</mat-label>
+              <input matInput name="name" ngModel>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="filter-card">
+              <mat-label>Type</mat-label>
+              <mat-select name="type" ngModel>
+                <mat-option [value]="-1">--All--</mat-option>
+                <mat-option *ngFor="let type of typeArray" [value]="dataService.getTypeNumberFromUrl(type.url)">{{
+                  dataService.capitalize(type.name) }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <button mat-button color="primary" type="submit">Search</button>
+          </td>
+          <td style="padding-left: 20%">
+            <a routerLink="/about"><button mat-button color="primary">About</button></a>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</mat-card>
+
+<!-- Using mat-grid -->
+<!-- <mat-grid-list cols="2" rowHeight="1:2" style="margin-top: 5px;">
+  <mat-grid-tile>
+    <app-overview [(triggerChange)]="triggerChange" [(filter)]="filter"></app-overview>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div class="wrapper">
+      <div class="inner"><app-personal-list [(triggerChange)]="triggerChange" [listName]="'MyList'" ></app-personal-list></div>
+      <div class="inner"><app-personal-list [(triggerChange)]="triggerChange" [listName]="'Wishlist'" ></app-personal-list></div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list> -->
+
+<div class="overview-container">
+  <div class="float-container">
+    <div class="float-child">
+      <div style="width: 90%;">
+        <app-overview [(triggerChange)]="triggerChange" [(filter)]="filter"></app-overview>
+      </div>
+    </div>
+  
+    <div class="float-child">
+      <div class="wrapper">
+        <div class="inner">
+          <app-personal-list [(triggerChange)]="triggerChange" [listName]="'MyList'"></app-personal-list>
+        </div>
+        <div class="inner">
+          <app-personal-list [(triggerChange)]="triggerChange" [listName]="'Wishlist'"></app-personal-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

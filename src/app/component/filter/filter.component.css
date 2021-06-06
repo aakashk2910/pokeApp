@@ -1,0 +1,45 @@
+.filter-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.filter-card{
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+
+.search-bar {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.wrapper{
+  margin-left:5%;
+  margin-right:auto;
+}
+.inner{
+  float:left;
+  width: 90%;
+  margin-bottom: 5%;
+}
+
+.float-container {
+  width: 100%; 
+  margin:0 auto;
+}
+
+.float-child {
+  width: 40%;
+  float: left;
+  margin-left: 7%;
+  margin-top:5%;
+} 
+
+.overview-container {
+  width: 100%; 
+  margin:0 auto;
+}

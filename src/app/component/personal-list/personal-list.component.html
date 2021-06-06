@@ -1,0 +1,17 @@
+<mat-card class="personal-list mat-elevation-z8">
+  <mat-card-title style="font-family: Pokemon;">{{ listName }}</mat-card-title>
+  <mat-card-content [style.overflow]="'auto'" [style.height.px]="'400'">
+    <div *ngIf="pokemon">
+      <div *ngFor="let poke of (pokemon | slice: lowValue : highValue)">
+        <br>
+        <app-overview-card [name]="poke.toLowerCase()" (click)="dialogService.openDetailDialog(poke.toLowerCase( ))"></app-overview-card>
+      </div>
+      <div style="width: 90%; margin-left: 5%;">
+        <mat-paginator [length]="pokemon.length" pageSize=5
+                      (page)="getPaginatorData($event)" [pageSizeOptions]="[5, 10, 15, 20, 25, 30]"
+                      showFirstLastButtons="false">
+        </mat-paginator>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
