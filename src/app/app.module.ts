@@ -54,7 +54,7 @@ import { AboutComponent } from './component/about/about.component';
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
-    { provide: MatDialogRef, useValue: {} }
+    { provide: MatDialogRef, useValue: {} },
   ],
   bootstrap: [AppComponent]
 })

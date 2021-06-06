@@ -55,7 +55,7 @@ export class DetailComponent implements OnInit {
       localStorage.setItem(listName, JSON.stringify([this.pokemon.name]));
       this.toastr.success(this.pokemon.name + ' added successfully to ' + listName, '');
       setTimeout(function () {
-        window.location.reload();
+        location.reload();
       }, 3000);
     } else {
       let list = JSON.parse(localStorage.getItem(listName));
@@ -64,7 +64,7 @@ export class DetailComponent implements OnInit {
         localStorage.setItem(listName, JSON.stringify(list));
         this.toastr.success(this.pokemon.name + ' added successfully to ' + listName, '');
         setTimeout(function () {
-          window.location.reload();
+          location.reload();
         }, 3000);
       } else {
         this.toastr.warning(this.pokemon.name + ' already exist in ' + listName, '');
