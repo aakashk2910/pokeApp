@@ -4,7 +4,14 @@
     <div *ngIf="pokemon">
       <div *ngFor="let poke of (pokemon | slice: lowValue : highValue)">
         <br>
-        <app-overview-card [name]="poke.toLowerCase()" (click)="dialogService.openDetailDialog(poke.toLowerCase( ))"></app-overview-card>
+        <div style="width: 95%;">
+          <app-overview-card [name]="poke.toLowerCase()" (click)="dialogService.openDetailDialog(poke.toLowerCase( ))"></app-overview-card> 
+        </div>
+        <span style="float:right; margin-top:-64px;">
+          <button mat-button aria-label="delete" (click)="deleteFromList(poke)" style="margin-left: 25%;">
+            <img style="width: 18px;" src="assets/delete.svg" />
+          </button>
+        </span>
       </div>
       <div style="width: 90%; margin-left: 5%;">
         <mat-paginator [length]="pokemon.length" pageSize=5

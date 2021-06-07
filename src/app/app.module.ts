@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { AboutComponent } from './component/about/about.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
