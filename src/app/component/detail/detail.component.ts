@@ -54,18 +54,22 @@ export class DetailComponent implements OnInit {
     if (!localStorage.getItem(listName)) {
       localStorage.setItem(listName, JSON.stringify([this.pokemon.name]));
       this.toastr.success(this.pokemon.name + ' added successfully to ' + listName, '');
-      setTimeout(function () {
-        location.reload();
-      }, 3000);
+      if(listName === 'MyList') {
+        this.dataService.editMyList(JSON.stringify([this.pokemon.name]));
+      } else {
+        this.dataService.editWishlist(JSON.stringify([this.pokemon.name]));
+      }
     } else {
       let list = JSON.parse(localStorage.getItem(listName));
       if (!list.includes(this.pokemon.name)) {
         list.push(this.pokemon.name);
         localStorage.setItem(listName, JSON.stringify(list));
         this.toastr.success(this.pokemon.name + ' added successfully to ' + listName, '');
-        setTimeout(function () {
-          location.reload();
-        }, 3000);
+        if(listName === 'MyList') {
+          this.dataService.editMyList(JSON.stringify(list));
+        } else {
+          this.dataService.editWishlist(JSON.stringify(list));
+        }
       } else {
         this.toastr.warning(this.pokemon.name + ' already exist in ' + listName, '');
       }

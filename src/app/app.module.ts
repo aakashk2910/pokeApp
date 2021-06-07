@@ -23,6 +23,7 @@ import { HomeComponent } from './component/home/home.component';
 import { ToastrModule } from 'ngx-toastr';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { AboutComponent } from './component/about/about.component';
+import { DataService } from './service/data.service';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { AboutComponent } from './component/about/about.component';
     ToastrModule.forRoot(),
   ],
   providers: [
+    DataService,
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} },
   ],

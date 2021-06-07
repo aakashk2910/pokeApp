@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {DialogService} from '../../service/dialog.service';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'app-personal-list',
@@ -17,10 +18,18 @@ export class PersonalListComponent implements OnChanges {
   @Input() listName: string;
   @Input() triggerChange: any;
 
-  constructor(public dialogService: DialogService, private toastr: ToastrService,) { }
+  constructor(
+    public dialogService: DialogService, 
+    private toastr: ToastrService, 
+    private dataService: DataService,
+  ) { }
 
   ngOnChanges(): void {
-    this.pokemon = JSON.parse(localStorage.getItem(this.listName));
+    if(this.listName === 'MyList') {
+      this.dataService.myList$.subscribe(list => this.pokemon = JSON.parse(list));
+    } else {
+      this.dataService.wishlist$.subscribe(list => this.pokemon = JSON.parse(list));
+    }
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {
@@ -34,9 +43,11 @@ export class PersonalListComponent implements OnChanges {
     list = list.filter(obj => obj !== name);
     localStorage.setItem(this.listName, JSON.stringify(list));
     this.toastr.info(name + ' deleted from ' + this.listName, '');
-    setTimeout(function () {
-      location.reload();
-    }, 3000);
+    if (this.listName === 'MyList') {
+      this.dataService.editMyList(JSON.stringify(list));
+    } else {
+      this.dataService.editWishlist(JSON.stringify(list));
+    }
   }
 
 }

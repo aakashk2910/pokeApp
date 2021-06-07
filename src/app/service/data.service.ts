@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
 
 const API_URL = 'https://pokeapi.co/api/v2/';
 
@@ -8,6 +10,12 @@ const API_URL = 'https://pokeapi.co/api/v2/';
   providedIn: 'root'
 })
 export class DataService {
+
+  private myList = new BehaviorSubject<any>(localStorage.getItem('MyList'));
+  myList$ = this.myList.asObservable();
+
+  private wishlist = new BehaviorSubject<any>(localStorage.getItem('Wishlist'));
+  wishlist$ = this.wishlist.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -35,5 +43,13 @@ export class DataService {
 
   getAllPokemons(): Observable<any> {
     return this.http.get(API_URL + 'pokemon?limit=1118&offset=200', { responseType: 'json' });
+  }
+
+  editMyList(list){
+    this.myList.next(list);
+  }
+
+  editWishlist(list) {
+    this.wishlist.next(list);
   }
 }
